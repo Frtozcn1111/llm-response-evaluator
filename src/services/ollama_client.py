@@ -19,6 +19,7 @@ class OllamaClient(LLMClient):
                 "model": self.model,
                 "prompt": prompt,
                 "stream": False,
+                "think": False,
             },
             timeout=300,
         )

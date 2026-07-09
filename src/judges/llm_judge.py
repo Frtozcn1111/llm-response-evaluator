@@ -16,4 +16,8 @@ class LLMJudge:
 
         response = self.client.generate(prompt)
 
+        print("\n===== RAW LLM RESPONSE =====\n")
+        print(response)
+        print("\n============================\n")
+
         return self.parser.parse(response)
