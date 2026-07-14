@@ -1,19 +1,13 @@
 import json
-import re
 
 from src.models.evaluation_result import EvaluationResult
+from src.services.response_cleaner import ResponseCleaner
 
 
 class EvaluationResultParser:
     def parse(self, response: str) -> EvaluationResult:
-        response = response.strip()
+        response = ResponseCleaner.clean(response)
 
-        # Remove Markdown code fences if present
-        response = re.sub(r"^```(?:json)?", "", response)
-        response = re.sub(r"```$", "", response)
-        response = response.strip()
-
-        # Extract first JSON object if extra text exists
         start = response.find("{")
         end = response.rfind("}")
 
